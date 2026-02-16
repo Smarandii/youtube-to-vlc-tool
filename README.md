@@ -6,6 +6,7 @@ Under the hood it launches VLC with the direct stream URL returned by:
 
 ```powershell
 vlc "$(yt-dlp --js-runtimes node -f best -g https://www.youtube.com/watch?v=qPKd99Pa2iU)"
+```
 How it works
 Chrome MV3 extension (service worker) reads the current tab URL.
 
