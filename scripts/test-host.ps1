@@ -1,4 +1,4 @@
-﻿$ErrorActionPreference = "Stop"
+$ErrorActionPreference = "Stop"
 
 $RepoRoot = Split-Path -Parent $PSScriptRoot
 $HostDir  = Join-Path $RepoRoot "native-host"
@@ -11,7 +11,7 @@ $exe = Get-ChildItem -Path (Join-Path $HostDir "bin\Release") -Filter "YtVlcHost
 
 if (-not $exe) { throw "YtVlcHost.exe not found" }
 
-$log = Join-Path $RepoRoot "nm-host.log"
+$log = Join-Path $RepoRoot "nm-host.log"; $env:YTVLC_LOG = $log
 Remove-Item $log -ErrorAction SilentlyContinue
 
 $p = New-Object System.Diagnostics.Process

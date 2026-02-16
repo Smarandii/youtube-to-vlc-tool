@@ -8,9 +8,9 @@ namespace YtVlcHost;
 
 internal static class Program
 {
-    private static string HostLog = @"D:\Projects\open_source\ytvlc\nm-host.log";
-    private static string YtDlp   = @"E:\YTVideos\yt-dlp.exe";
-    private static string Vlc     = @"C:\Program Files (x86)\VideoLAN\VLC\vlc.exe";
+    private static string HostLog = Environment.GetEnvironmentVariable("YTVLC_LOG") ?? Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "youtube-to-vlc-tool", "nm-host.log");
+    private static string YtDlp   = Environment.GetEnvironmentVariable("YTVLC_YTDLP") ?? "yt-dlp";
+    private static string Vlc     = Environment.GetEnvironmentVariable("YTVLC_VLC") ?? "vlc";
 
     private static void Log(string msg)
     {
@@ -77,7 +77,7 @@ internal static class Program
 
     public static int Main(string[] args)
     {
-        Log("host.exe started");
+        Log("host.exe started"); try { Directory.CreateDirectory(Path.GetDirectoryName(HostLog)!); } catch { }
         Log("ytdlp=" + YtDlp);
         Log("vlc=" + Vlc);
 
@@ -106,7 +106,7 @@ internal static class Program
                 if (!doc.RootElement.TryGetProperty("url", out var urlEl)) continue;
 
                 var url = urlEl.GetString() ?? "";
-                if (!url.Contains("youtube.com/watch", StringComparison.OrdinalIgnoreCase)) continue;
+                if (!(url.Contains("youtube.com/watch", StringComparison.OrdinalIgnoreCase) || url.Contains("m.youtube.com/watch", StringComparison.OrdinalIgnoreCase) || url.Contains("youtu.be/", StringComparison.OrdinalIgnoreCase))) continue;
 
                 // Equivalent to: vlc "$(yt-dlp --js-runtimes node -f best -g URL)"
                 var outText = RunAndCapture(YtDlp, $"--js-runtimes node -f best -g \"{url}\"").Trim();
