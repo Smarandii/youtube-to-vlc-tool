@@ -1,4 +1,4 @@
-﻿# YouTube → VLC (Chrome Extension + Native Host)
+# YouTube → VLC (Chrome Extension + Native Host)
 
 A Windows toolchain that lets you browse YouTube normally in Chrome, then open the current video in local VLC by clicking a Chrome extension button.
 

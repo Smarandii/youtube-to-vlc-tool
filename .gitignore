@@ -1,10 +1,12 @@
-﻿# dotnet
+# dotnet build outputs
 **/bin/
 **/obj/
 .vs/
 
-# generated / local
+# generated at install time
 dist/
+
+# logs (optional)
 nm-host.log
 
 # misc
