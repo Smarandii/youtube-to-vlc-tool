@@ -1,0 +1,9 @@
+{
+  "manifest_version": 3,
+  "name": "Open YouTube in VLC",
+  "version": "1.0",
+  "permissions": ["nativeMessaging", "tabs"],
+  "host_permissions": ["*://*.youtube.com/*", "*://youtube.com/*", "*://*.youtu.be/*", "*://youtu.be/*"],
+  "background": { "service_worker": "background.js" },
+  "action": { "default_title": "Open in VLC" }
+}

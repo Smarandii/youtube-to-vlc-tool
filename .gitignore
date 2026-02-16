@@ -1,0 +1,12 @@
+﻿# dotnet
+**/bin/
+**/obj/
+.vs/
+
+# generated / local
+dist/
+nm-host.log
+
+# misc
+*.user
+*.suo
